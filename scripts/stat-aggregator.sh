@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 MONGO_VERSION=3.2.9
 UBUNTU_VERSION=x86_64-ubuntu1404
