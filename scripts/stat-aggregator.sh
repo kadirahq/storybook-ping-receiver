@@ -11,7 +11,7 @@ fi
 
 export PATH=$PATH:$PWD/mongodb-linux-${UBUNTU_VERSION}-${MONGO_VERSION}/bin
 
-MONGO_SHELL_URL=$(echo "${MONGO_URL}" | awk -F "[@?]" '{print $2})')
+MONGO_SHELL_URL=$(echo "${MONGO_URL}" | awk -F "[@?]" '{print $2}')
 MONGO_SHELL_USER=$(echo "${MONGO_URL}" | awk -F "[/:]" '{print $4}')
 MONGO_SHELL_PASSWORD=$(echo "${MONGO_URL}" | awk -F "[:@]" '{print $3}')
 
