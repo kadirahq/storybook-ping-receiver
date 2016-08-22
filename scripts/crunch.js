@@ -43,10 +43,8 @@ _(_(resultsGroupedByDay).mapObject(function(val) {
 })).mapObject(function(val, key) {
   db.statistics.update(
     {
-      _id: {
-        date: new Date(key),
-        type: "count"
-      }
+      date: new Date(key),
+      type: "count"
     },
     {
       $set: {count: val}
