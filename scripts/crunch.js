@@ -1,6 +1,6 @@
 var date = new Date();
 var endTime = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-var startTime = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() - 1);
+var startTime = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() - 10);
 
 var results = db.pings.aggregate([
   {
@@ -35,19 +35,18 @@ var results = db.pings.aggregate([
 ]).toArray();
 
 var resultsGroupedByDay = _(results).groupBy(function(doc) {
-  return new Date(doc._id.year, doc._id.month, doc._id.day);
+  var date = new Date(Date.UTC(doc._id.year, doc._id.month - 1, doc._id.day));
+  return date;
 });
 
-_(_(resultsGroupedByDay).mapObject(function(val) {
-  return val.length;
-})).mapObject(function(val, key) {
+_(resultsGroupedByDay).mapObject(function(val, key) {
   db.statistics.update(
     {
       date: new Date(key),
       type: "count"
     },
     {
-      $set: {count: val}
+      $set: {count: val.length}
     },
     {
       upsert: true
