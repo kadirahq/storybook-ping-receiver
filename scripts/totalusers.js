@@ -1,6 +1,6 @@
 var date = new Date();
 var endTime = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-var startTime = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() - 20);
+var startTime = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() - 1);
 
 var results = db.pings.aggregate([
   {
