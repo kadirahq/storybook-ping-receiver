@@ -15,4 +15,4 @@ MONGO_SHELL_URL=$(echo "${MONGO_URL}" | awk -F "[@?]" '{print $2}')
 MONGO_SHELL_USER=$(echo "${MONGO_URL}" | awk -F "[/:]" '{print $4}')
 MONGO_SHELL_PASSWORD=$(echo "${MONGO_URL}" | awk -F "[:@]" '{print $3}')
 
-mongo --ssl --sslAllowInvalidCertificates ${MONGO_SHELL_URL} -u ${MONGO_SHELL_USER} -p ${MONGO_SHELL_PASSWORD} scripts/underscore-min.js scripts/totalusers.js
+mongo --ssl --sslAllowInvalidCertificates ${MONGO_SHELL_URL} -u ${MONGO_SHELL_USER} -p ${MONGO_SHELL_PASSWORD} scripts/underscore-min.js scripts/totalusers.js scripts/newusers.js
