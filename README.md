@@ -8,8 +8,7 @@ Currently this only has two routes and save it directly to BigQuery.
 ## Sample BigQuery SQL
 
 ### Daily users
-Change `BETWEEN` parameters to change the window. Lists last weeks info.
-
+Lats weeks daily users grouped by day.
 ```SQL
 SELECT
   day(trackedAt) as day,
@@ -94,3 +93,9 @@ SELECT count(unique(userId)) as count
           trackedAt < date_add(utc_usec_to_timestamp(utc_usec_to_day(now())), -7, "DAY")
     )
 ```
+
+## Running the queries
+* Install google cloud sdk from [here](https://cloud.google.com/sdk/docs/quickstart-mac-os-x) or homebrew `brew install Caskroom/cask/google-cloud-sdl`
+* Login and configure the project using `gcloud init`
+* run the required query using `bq query "$(cat scripts/<script name>.sql)"`
+* Adjust the `BETWEEN` parameters in the scripts to change the dates/windows etc..
