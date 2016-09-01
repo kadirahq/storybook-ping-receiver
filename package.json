@@ -19,10 +19,12 @@
   "homepage": "https://github.com/kadirahq/storybook-ping-receiver#readme",
   "private": true,
   "dependencies": {
+    "@google-cloud/bigquery": "^0.1.2",
+    "basic-auth": "^1.0.4",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "googleapis": "^12.4.0",
-    "node-uuid": "^1.4.7"
+    "express-graphql": "^0.5.4",
+    "graphql": "^0.7.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
