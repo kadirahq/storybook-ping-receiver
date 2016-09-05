@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha test",
-    "stats": "bash scripts/stat-aggregator.sh"
+    "stats": "bash scripts/stat-aggregator.sh",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -22,13 +24,19 @@
     "@google-cloud/bigquery": "^0.1.2",
     "basic-auth": "^1.0.4",
     "body-parser": "^1.15.2",
+    "cors": "^2.8.0",
     "express": "^4.14.0",
     "express-graphql": "^0.5.4",
-    "graphql": "^0.7.0"
+    "graphql": "^0.7.0",
+    "lokka": "^1.7.0",
+    "lokka-transport-http-auth": "^1.2.0",
+    "react": "^15.3.1",
+    "recharts": "^0.13.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "@kadira/storybook": "^2.5.2"
   }
 }
