@@ -5,7 +5,7 @@ import {Lokka} from 'lokka';
 import HttpTransport from 'lokka-transport-http-auth';
 
 const client = new Lokka({
-  transport: new HttpTransport("http://*************/")
+  transport: new HttpTransport("http://****************/")
 });
 
 const SimpleLineChart = ({data}) => {
@@ -15,10 +15,10 @@ const SimpleLineChart = ({data}) => {
     lineComponent = <Line type="monotone" dataKey="count" stroke="#82ca9d" />;
   } else {
     lineComponent = [
-        <Line key="tu" type="monotone" dataKey="totalUsers" stroke="#720a9d" />,
-        <Line key="nu" type="monotone" dataKey="newUsers" stroke="#825a9e" />,
-        <Line key="cu" type="monotone" dataKey="churnedUsers" stroke="#92ca9f" />,
-        <Line key="ru" type="monotone" dataKey="returnedUsers" stroke="#02fa90" /> ];
+        <Line key="tu" type="monotone" dataKey="totalUsers" stroke="#800000" />,
+        <Line key="nu" type="monotone" dataKey="newUsers" stroke="#0000C0" />,
+        <Line key="cu" type="monotone" dataKey="churnedUsers" stroke="#A000A0" />,
+        <Line key="ru" type="monotone" dataKey="returnedUsers" stroke="#00E0E0" /> ];
   }
 
   return (
@@ -36,29 +36,32 @@ SimpleLineChart.propTypes = {
   data: React.PropTypes.arrayOf(React.PropTypes.object)
 };
 
-const fetchResults = ({type}) => {
+const fetchResults = ({type, from, to}) => {
+  const fromDate = new Date(from).getTime();
+  const toDate = new Date(to).getTime();
+
   if(type == 'all') {
     return client.query(`
       {
-        totalUsers {
+        totalUsers(from: ${fromDate}, to: ${toDate}) {
           year
           month
           day
           count
         },
-        newUsers {
+        newUsers(from: ${fromDate}, to: ${toDate}) {
           year
           month
           day
           count
         },
-        churnedUsers {
+        churnedUsers(from: ${fromDate}, to: ${toDate}) {
           year
           month
           day
           count
         },
-        returnedUsers {
+        returnedUsers(from: ${fromDate}, to: ${toDate}) {
           year
           month
           day
@@ -75,12 +78,12 @@ const fetchResults = ({type}) => {
           returnedUsers: results.returnedUsers[i].count
         };
       });
-      return {data};
+      return {data: data.reverse()};
     });
   }
   return client.query(`
       {
-        ${type} {
+        ${type}(from: ${fromDate}, to: ${toDate}) {
           year
           month
           day
