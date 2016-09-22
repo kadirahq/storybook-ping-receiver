@@ -30,6 +30,7 @@
     "graphql": "^0.7.0",
     "lokka": "^1.7.0",
     "lokka-transport-http-auth": "^1.2.0",
+    "lru-cache": "^4.0.1",
     "react": "^15.3.1",
     "react-komposer": "^1.13.1",
     "recharts": "^0.13.4"
