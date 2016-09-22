@@ -5,7 +5,7 @@ import {Lokka} from 'lokka';
 import HttpTransport from 'lokka-transport-http-auth';
 
 const client = new Lokka({
-  transport: new HttpTransport("http://****************/")
+  transport: new HttpTransport("http://user:secret@localhost:22022/graphql")
 });
 
 const SimpleLineChart = ({data}) => {
@@ -97,7 +97,7 @@ const fetchResults = ({type, from, to}) => {
           count
         };
       });
-      return {data};
+      return {data: data.reverse()};
     });
 };
 
