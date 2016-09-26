@@ -2,7 +2,7 @@ import React from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import {composeWithPromise} from 'react-komposer';
 import {Lokka} from 'lokka';
-import HttpTransport from 'lokka-transport-http-auth';
+import HttpTransport from 'lokka-transport-http';
 
 const client = new Lokka({
   transport: new HttpTransport(process.env.STORYBOOK_PING_API_URL)
