@@ -5,7 +5,7 @@ import {Lokka} from 'lokka';
 import HttpTransport from 'lokka-transport-http-auth';
 
 const client = new Lokka({
-  transport: new HttpTransport("http://****************/")
+  transport: new HttpTransport(process.env.STORYBOOK_PING_API_URL)
 });
 
 const SimpleLineChart = ({data}) => {
@@ -97,7 +97,7 @@ const fetchResults = ({type, from, to}) => {
           count
         };
       });
-      return {data};
+      return {data: data.reverse()};
     });
 };
 
