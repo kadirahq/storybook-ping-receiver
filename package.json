@@ -30,13 +30,16 @@
     "graphql": "^0.7.0",
     "lokka": "^1.7.0",
     "lokka-transport-http-auth": "^1.2.0",
+    "lru-cache": "^4.0.1",
     "react": "^15.3.1",
+    "react-komposer": "^1.13.1",
     "recharts": "^0.13.4"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.5.2",
+    "@kadira/storybook-addon-knobs": "^1.2.1",
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
-    "request": "^2.74.0",
-    "@kadira/storybook": "^2.5.2"
+    "request": "^2.74.0"
   }
 }
