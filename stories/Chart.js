@@ -5,7 +5,7 @@ import {Lokka} from 'lokka';
 import HttpTransport from 'lokka-transport-http';
 
 const client = new Lokka({
-  transport: new HttpTransport("http://storybook-ping-receiver.herokuapp.com/graphql")
+  transport: new HttpTransport(process.env.STORYBOOK_PING_API_URL)
 });
 
 const SimpleLineChart = ({data}) => {
