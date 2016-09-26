@@ -11,6 +11,6 @@ export_env_dir() {
         done
     fi
 }
-export_env_dir
+export_env_dir $ENV_DIR
 npm install
 npm run build-storybook
