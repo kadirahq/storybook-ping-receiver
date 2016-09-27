@@ -68,18 +68,22 @@ const fetchResults = ({type, from, to}) => {
           count
         }
       }
-    `).then(results => {
-      let data =  results.totalUsers.map(({year, month, day, count}, i) => {
-        return {
-          date: `${year}/${month}/${day}`,
-          totalUsers: count,
-          newUsers: results.newUsers[i].count,
-          churnedUsers: results.churnedUsers[i].count,
-          returnedUsers: results.returnedUsers[i].count
-        };
+    `)
+      .then(results => {
+        if (!results.totalUsers.length) {
+          throw new Error('No Data. Check your from, to values');
+        }
+        let data =  results.totalUsers.map(({year, month, day, count}, i) => {
+          return {
+            date: `${year}/${month}/${day}`,
+            totalUsers: count,
+            newUsers: results.newUsers[i].count,
+            churnedUsers: results.churnedUsers[i].count,
+            returnedUsers: results.returnedUsers[i].count
+          };
+        });
+        return {data: data.reverse()};
       });
-      return {data: data.reverse()};
-    });
   }
   return client.query(`
       {
@@ -91,6 +95,9 @@ const fetchResults = ({type, from, to}) => {
         }
       }
     `).then(results => {
+      if (!results.totalUsers.length) {
+        throw new Error('No Data. Check your from, to values');
+      }
       let data =  results[type].map(({year, month, day, count}) => {
         return {
           date: `${year}/${month}/${day}`,
