@@ -95,7 +95,7 @@ const fetchResults = ({type, from, to}) => {
         }
       }
     `).then(results => {
-      if (!results.totalUsers.length) {
+      if (!results[type].length) {
         throw new Error('No Data. Check your from, to values');
       }
       let data =  results[type].map(({year, month, day, count}) => {
