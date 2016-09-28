@@ -1,5 +1,5 @@
 import React from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import {composeWithPromise} from 'react-komposer';
 import {Lokka} from 'lokka';
 import HttpTransport from 'lokka-transport-http';
@@ -12,24 +12,42 @@ const SimpleLineChart = ({data}) => {
   let lineComponent;
 
   if(data[0].count) {
-    lineComponent = <Line type="monotone" dataKey="count" stroke="#82ca9d" />;
+    lineComponent = <Area type="monotone" dataKey="count" stroke="#82ca9d" fill="url(#colorNu)" />;
   } else {
     lineComponent = [
-        <Line key="tu" type="monotone" dataKey="totalUsers" stroke="#800000" />,
-        <Line key="nu" type="monotone" dataKey="newUsers" stroke="#0000C0" />,
-        <Line key="cu" type="monotone" dataKey="churnedUsers" stroke="#A000A0" />,
-        <Line key="ru" type="monotone" dataKey="returnedUsers" stroke="#00E0E0" /> ];
+        <Area key="tu" type="monotone" dataKey="totalUsers" stroke="#8884d8" fill="url(#colorTu)" />,
+        <Area key="nu" type="monotone" dataKey="newUsers" stroke="#82ca9d" fill="url(#colorNu)" />,
+        <Area key="cu" type="monotone" dataKey="churnedUsers" stroke="#A000A0" fill="url(#colorCu)" />,
+        <Area key="ru" type="monotone" dataKey="returnedUsers" stroke="#00E0E0" fill="url(#colorRu)" /> ];
   }
 
   return (
-      <LineChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-      <XAxis dataKey="date"/>
-      <YAxis/>
-      <CartesianGrid strokeDasharray="3 3"/>
-      <Tooltip/>
-      <Legend />
-      {lineComponent}
-      </LineChart>
+      <AreaChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+        <defs>
+          <linearGradient id="colorTu" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+          </linearGradient>
+          <linearGradient id="colorNu" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+          </linearGradient>
+          <linearGradient id="colorCu" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#A000A0" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#A000A0" stopOpacity={0}/>
+          </linearGradient>
+          <linearGradient id="colorRu" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#00E0E0" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#00E0E0" stopOpacity={0}/>
+          </linearGradient>
+        </defs>
+        <XAxis dataKey="date"/>
+        <YAxis/>
+        <CartesianGrid strokeDasharray="3 3"/>
+        <Tooltip/>
+        <Legend />
+        {lineComponent}
+      </AreaChart>
   );};
 
 SimpleLineChart.propTypes = {
