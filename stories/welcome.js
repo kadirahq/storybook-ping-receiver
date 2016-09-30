@@ -33,17 +33,24 @@ For more information, refer this [discussion](https://github.com/kadirahq/react-
 `;
 
 class Content extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this._retryTime = 0;
+  }
+
   chnageLinks() {
     const domNode = ReactDOM.findDOMNode(this);
     const links = domNode.querySelectorAll('a');
-    links.forEach((link) => {
+
+    for(let lc=0; lc<links.length; lc++) {
+      const link = links[lc];
       const href = link.getAttribute('href');
       if (/http/.test(href)) {
         link.setAttribute('target', '_blank');
       } else {
         link.setAttribute('target', '_top');
       }
-    });
+    }
   }
 
   componentDidMount() {
