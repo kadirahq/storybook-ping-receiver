@@ -2,13 +2,10 @@ import React from 'react';
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import { withKnobs, date, select } from '@kadira/storybook-addon-knobs';
 import Chart from './lib/Chart';
-import './styles.css';
+import welcomeMessage from './welcome';
 
 const stories = storiesOf('Stats', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator((story) => (
-  <div className='stat-chart'>{story()}</div>
-));
 
 let toDate = new Date();
 let fromDate = new Date(new Date() - 1000 * 60 * 60 * 24 * 7);
@@ -39,27 +36,49 @@ function getDateRange() {
   return {from, to};
 }
 
+stories.add('Welcome', welcomeMessage);
+
 stories.add('Total Users', () => {
   const range = getDateRange();
-  return <Chart type='totalUsers' from={range.from} to={range.to}/>;
+  return (
+    <div className='stat-chart'>
+      <Chart type='totalUsers' from={range.from} to={range.to}/>
+    </div>
+  );
 });
 
 stories.add('New Users', () => {
   const range = getDateRange();
-  return <Chart type='newUsers' from={range.from} to={range.to}/>;
+  return (
+    <div className='stat-chart'>
+     <Chart type='newUsers' from={range.from} to={range.to}/>
+    </div>
+   );
 });
 
 stories.add('Churned Users', () => {
   const range = getDateRange();
-  return <Chart type='churnedUsers' from={range.from} to={range.to}/>;
+  return (
+    <div className='stat-chart'>
+     <Chart type='churnedUsers' from={range.from} to={range.to}/>
+    </div>
+  );
 });
 
 stories.add('Returned Users', () => {
   const range = getDateRange();
-  return <Chart type='returnedUsers' from={range.from} to={range.to}/>;
+  return (
+    <div className='stat-chart'>
+      <Chart type='returnedUsers' from={range.from} to={range.to}/>
+    </div>
+  );
 });
 
 stories.add('All', () => {
   const range = getDateRange();
-  return <Chart type='all' from={range.from} to={range.to}/>;
+  return (
+    <div className='stat-chart'>
+      <Chart type='all' from={range.from} to={range.to}/>
+    </div>
+  );
 });
