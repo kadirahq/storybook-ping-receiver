@@ -1,4 +1,7 @@
-import { configure } from '@kadira/storybook';
+import { configure, addDecorator } from '@kadira/storybook';
+import centered from '@kadira/react-storybook-decorator-centered';
+
+addDecorator(centered);
 
 function loadStories() {
   require('../stories');

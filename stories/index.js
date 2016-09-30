@@ -2,9 +2,13 @@ import React from 'react';
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import {withKnobs, date} from '@kadira/storybook-addon-knobs';
 import Chart from './Chart';
+import './styles.css';
 
 const stories = storiesOf('Chart', module);
 stories.addDecorator(withKnobs);
+stories.addDecorator((story) => (
+  <div className='stat-chart'>{story()}</div>
+));
 
 let to = new Date();
 let from = new Date(new Date() - 1000 * 60 * 60 * 24 * 7);

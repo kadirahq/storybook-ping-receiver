@@ -22,15 +22,18 @@
   "private": true,
   "dependencies": {
     "@google-cloud/bigquery": "^0.1.2",
+    "@kadira/react-storybook-decorator-centered": "^1.0.0",
     "basic-auth": "^1.0.4",
     "body-parser": "^1.15.2",
     "cors": "^2.8.0",
     "express": "^4.14.0",
     "express-graphql": "^0.5.4",
     "graphql": "^0.7.0",
+    "i": "^0.3.5",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.2.0",
     "lru-cache": "^4.0.1",
+    "npm": "^3.10.8",
     "react": "^15.3.1",
     "react-komposer": "^1.13.1",
     "recharts": "^0.13.4"
